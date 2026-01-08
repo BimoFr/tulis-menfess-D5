@@ -68,21 +68,20 @@
     <span><%= timeStr %></span>
   </div>
 
-  <div class="flex gap-3">
-    <form action="/like/<%= msg.id %>" method="POST" onclick="event.stopPropagation()">
-      <button type="submit" class="flex items-center gap-1 hover:text-green-600 transition duration-200">
-        <span class="text-base">👍</span>
-        <span class="font-bold"><%= msg.likes || 0 %></span>
-      </button>
-    </form>
+<div class="flex gap-3 justify-end items-center mt-2">
+  <form action="/like/<%= msg.id %>" method="POST" onclick="event.stopPropagation()">
+    <button type="submit" class="flex items-center gap-1 text-gray-500 hover:text-green-600 transition">
+      <span>👍</span>
+      <span class="font-bold"><%= msg.likes || 0 %></span>
+    </button>
+  </form>
 
-    <form action="/dislike/<%= msg.id %>" method="POST" onclick="event.stopPropagation()">
-      <button type="submit" class="flex items-center gap-1 hover:text-red-600 transition duration-200">
-        <span class="text-base">👎</span>
-        <span class="font-bold"><%= msg.dislikes || 0 %></span>
-      </button>
-    </form>
-  </div>
+  <form action="/dislike/<%= msg.id %>" method="POST" onclick="event.stopPropagation()">
+    <button type="submit" class="flex items-center gap-1 text-gray-500 hover:text-red-600 transition">
+      <span>👎</span>
+      <span class="font-bold"><%= msg.dislikes || 0 %></span>
+    </button>
+  </form>
 </div>
 
       <% } else { %>
