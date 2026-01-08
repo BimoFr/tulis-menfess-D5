@@ -37,22 +37,26 @@ router.post("/send", async (req, res) => {
   }
 });
 
-// Route untuk Fitur Like
-router.post('/like/:id', (req, res) => {
-    const query = "UPDATE menfess SET likes = likes + 1 WHERE id = ?"; // [cite: 197]
-    db.query(query, [req.params.id], (err) => {
-        if (err) throw err;
-        res.redirect('/'); // Mengembalikan user ke halaman utama [cite: 199, 200]
-    });
+// Route Like
+router.post('/like/:id', async (req, res) => {
+  try {
+    await db.query('UPDATE menfess SET likes = likes + 1 WHERE id = ?', [req.params.id]);
+    res.redirect('/'); // Kembali ke halaman utama 
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error updating likes');
+  }
 });
 
-// Route untuk Fitur Dislike
-router.post('/dislike/:id', (req, res) => {
-    const query = "UPDATE menfess SET dislikes = dislikes + 1 WHERE id = ?"; // [cite: 198]
-    db.query(query, [req.params.id], (err) => {
-        if (err) throw err;
-        res.redirect('/'); // [cite: 200]
-    });
+// Route Dislike
+router.post('/dislike/:id', async (req, res) => {
+  try {
+    await db.query('UPDATE menfess SET dislikes = dislikes + 1 WHERE id = ?', [req.params.id]);
+    res.redirect('/'); // Kembali ke halaman utama 
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error updating dislikes');
+  }
 });
 
 module.exports = router;
