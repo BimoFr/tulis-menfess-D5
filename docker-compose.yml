@@ -58,4 +58,4 @@ volumes:
 networks:
   tekser-network:
     driver: bridge
-    name: net_tekser_${GROUP_NAME}
+    name: net_tekserr_${GROUP_NAME}
